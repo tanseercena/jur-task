@@ -41,33 +41,32 @@
                     </form>
 
                     <h2 class="mt-3">Experiences</h2>
-                    <form class="mt-3">
-                        <div class="mb-6">
-                            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Company</label>
-                            <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" required>
+                    @if ($message = Session::get('success-exp'))
+                        <div class="">
+                            <strong>{{ $message }}</strong>
                         </div>
-                        <div class="mb-6">
-                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job Title</label>
-                            <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Job Title" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start Date</label>
-                            <input type="date" id="start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Start Date" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">End Date
-                                <input type="checkbox" name="present" value="1"> Currently Working
-                            </label>
-                            <input type="date" id="end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="End Date" >
-                        </div>
-                        <div class="mb-6">
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Descriptions</label>
-                            <textarea id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descriptions" required></textarea>
-                        </div>
+                    @endif
 
-                        <button type="submit" class="mt-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Save</button>
+                    <a href="{{ route('user.experience.create') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">Add Experience</a>
 
-                    </form>
+                    <div class="mt-3">
+                        @forelse($experiences as $experience)
+                            <div>
+                                <p><strong>Company: </strong> {{ $experience->company }}</p>
+                                <p><strong>Job Title: </strong> {{ $experience->title }}</p>
+                                <p><strong>Start Date: </strong> {{ $experience->start_date }}</p>
+                                <p><strong>End Date: </strong> {{ is_null($experience->end_date) ? 'Curently Working' : $experience->end_date }}</p>
+                                <p><strong>Descriptions</strong></p>
+                                <p>{{ $experience->description }}</p>
+                            </div>
+                            <a href="{{ route('user.experience.edit', $experience) }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">Edit Experience</a>
+                            <a href="{{ route('user.experience.destroy', $experience) }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-red-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-red-700 transition duration-150 ease-in-out">Remove Experience</a>
+                            <br><br>
+                            <hr>
+                        @empty
+                            <p class="mt-3">No Experience Found!</p>
+                        @endforelse
+                    </div>
 
                     <h2 class="mt-3">Organization Associations</h2>
                     <form class="mt-3">

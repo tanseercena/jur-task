@@ -42,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship with Experience model. One user has many experiences
+     *
+     */
+    public function experiences() {
+        return $this->hasMany(Experience::class);
+    }
 }

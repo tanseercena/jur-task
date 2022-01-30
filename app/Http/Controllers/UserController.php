@@ -8,20 +8,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('dashboard', [
-            'user' => auth()->user()
+            'user' => auth()->user(),
+            'experiences' => auth()->user()->experiences,
         ]);
     }
 
-    public function updateProfile(ProfileRequest $request) {
+    public function updateProfile(ProfileRequest $request)
+    {
         auth()->user()->update([
             'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'      => $request->email,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
         ]);
 
-        return redirect()->route('dashboard')->with('success','Profile updated successfully!');
+        return redirect()->route('dashboard')->with('success', 'Profile updated successfully!');
     }
 
 

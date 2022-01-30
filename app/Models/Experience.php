@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Experience extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    /**
+     * Experience belongs to a User
+     *
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
