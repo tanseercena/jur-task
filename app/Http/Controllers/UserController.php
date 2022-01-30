@@ -13,6 +13,7 @@ class UserController extends Controller
         return view('dashboard', [
             'user' => auth()->user(),
             'experiences' => auth()->user()->experiences,
+            'org_associations' => auth()->user()->orgAssociation,
         ]);
     }
 

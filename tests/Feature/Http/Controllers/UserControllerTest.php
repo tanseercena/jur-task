@@ -20,8 +20,8 @@ class UserControllerTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('user.profile.update', $user), [
             'first_name' => 'John',
-            'last_name'  => 'Cena',
-            'email'      => 'john.cena@gmail.com',
+            'last_name' => 'Cena',
+            'email' => 'john.cena@gmail.com',
         ]);
 
         $response->assertStatus(302);
@@ -40,8 +40,8 @@ class UserControllerTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('user.profile.update', $user), [
             'first_name' => '',
-            'last_name'  => 'Cena',
-            'email'      => 'test@gmail.com',
+            'last_name' => 'Cena',
+            'email' => 'test@gmail.com',
         ]);
 
         $response->assertSessionHasErrors('first_name');
@@ -58,8 +58,8 @@ class UserControllerTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('user.profile.update', $user), [
             'first_name' => 'Test',
-            'last_name'  => 'Cena',
-            'email'      => '',
+            'last_name' => 'Cena',
+            'email' => '',
         ]);
 
         $response->assertSessionHasErrors('email');

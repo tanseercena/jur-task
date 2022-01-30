@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="mt-3">Add Experience</h2>
+                    <h2 class="mt-3">Add Organization Association</h2>
 
                     @if ($message = Session::get('success'))
                         <div class="">
@@ -23,15 +23,15 @@
                         </div>
                     @endif
 
-                    <form class="mt-3" method="post" action="{{ route('user.experience.store') }}">
+                    <form class="mt-3" method="post" action="{{ route('user.org.association.store') }}">
                         @csrf
                         <div class="mb-6">
-                            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Company</label>
-                            <input type="text" value="{{ old('company') }}" name="company" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" required>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
+                            <input type="text" value="{{ old('name') }}" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required>
                         </div>
                         <div class="mb-6">
-                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job Title</label>
-                            <input type="text" value="{{ old('title') }}" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Job Title" required>
+                            <label for="associated_as" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Associated As</label>
+                            <input type="text" value="{{ old('associated_as') }}" name="associated_as" id="associated_as" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Associated As" required>
                         </div>
                         <div class="mb-6">
                             <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start Date</label>

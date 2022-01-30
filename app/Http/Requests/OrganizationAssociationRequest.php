@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MaxWordsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileRequest extends FormRequest
+class OrganizationAssociationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,11 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required',
+            'associated_as' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'date|nullable',
+            'description' => ['required', new MaxWordsRule(100)],   // Created custom rule for word count
         ];
     }
 }

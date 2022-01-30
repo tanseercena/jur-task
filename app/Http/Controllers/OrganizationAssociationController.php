@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ExperienceRequest;
-use App\Models\Experience;
+use App\Http\Requests\OrganizationAssociationRequest;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
-class ExperienceController extends Controller
+class OrganizationAssociationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class ExperienceController extends Controller
      */
     public function create()
     {
-        return view('user.experience.create');
+        return view('user.org-association.create');
     }
 
     /**
@@ -34,17 +34,17 @@ class ExperienceController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExperienceRequest $request)
+    public function store(OrganizationAssociationRequest $request)
     {
-        auth()->user()->experiences()->create([
-            'company' => $request->company,
-            'title' => $request->title,
+        auth()->user()->orgAssociation()->create([
+            'name' => $request->name,
+            'associated_as' => $request->associated_as,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('dashboard')->with('success-exp', 'Experience added successfully!');
+        return redirect()->route('dashboard')->with('success-org', 'Organization Association added successfully!');
     }
 
     /**
@@ -64,10 +64,10 @@ class ExperienceController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Experience $experience)
+    public function edit(Organization $organization)
     {
-        return view('user.experience.edit', [
-            'experience' => $experience
+        return view('user.org-association.edit', [
+            'organization' => $organization
         ]);
     }
 
@@ -78,17 +78,17 @@ class ExperienceController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExperienceRequest $request, Experience $experience)
+    public function update(OrganizationAssociationRequest $request, Organization $organization)
     {
-        $experience->update([
-            'company' => $request->company,
-            'title' => $request->title,
+        $organization->update([
+            'name' => $request->name,
+            'associated_as' => $request->associated_as,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('dashboard')->with('success-exp', 'Experience updated successfully!');
+        return redirect()->route('dashboard')->with('success-org', 'Organization Association updated successfully!');
     }
 
     /**
@@ -99,10 +99,10 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        $experience = Experience::findOrFail($id);
+        $organization = Organization::findOrFail($id);
 
-        $experience->delete();
+        $organization->delete();
 
-        return redirect()->route('dashboard')->with('success-exp', 'Experience deleted successfully!');
+        return redirect()->route('dashboard')->with('success-org', 'Organization Association deleted successfully!');
     }
 }

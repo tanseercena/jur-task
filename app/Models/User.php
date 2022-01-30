@@ -47,7 +47,19 @@ class User extends Authenticatable
      * Relationship with Experience model. One user has many experiences
      *
      */
-    public function experiences() {
+    public function experiences()
+    {
         return $this->hasMany(Experience::class);
     }
+
+    /**
+     * Relationship with Experience model. One user has many experiences
+     *
+     */
+    public function orgAssociation()
+    {
+        return $this->hasMany(Organization::class);
+    }
+
+
 }

@@ -26,10 +26,10 @@ class ExperienceRequest extends FormRequest
     {
         return [
             'company' => 'required',
-            'title'   => 'required',
+            'title' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'date|nullable',
-            'description' => ['required', new MaxWordsRule(300)],
+            'description' => ['required', new MaxWordsRule(300)], // Created custom rule for word count
         ];
     }
 }

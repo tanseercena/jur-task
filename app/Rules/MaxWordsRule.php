@@ -21,8 +21,8 @@ class MaxWordsRule implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
@@ -37,6 +37,6 @@ class MaxWordsRule implements Rule
      */
     public function message()
     {
-        return 'The :attribute cannot be longer than '.$this->max_words.' words.';
+        return 'The :attribute cannot be longer than ' . $this->max_words . ' words.';
     }
 }

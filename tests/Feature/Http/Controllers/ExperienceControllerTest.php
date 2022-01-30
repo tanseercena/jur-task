@@ -75,7 +75,7 @@ class ExperienceControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('dashboard');
         $this->followRedirects($response)->assertSee('Experience updated successfully!');
-        $this->assertDatabaseHas(Experience::class,['id' => $experience->id, 'company' => 'Test Company Updated']);
+        $this->assertDatabaseHas(Experience::class, ['id' => $experience->id, 'company' => 'Test Company Updated']);
     }
 
     /**
@@ -93,7 +93,7 @@ class ExperienceControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('dashboard');
         $this->followRedirects($response)->assertSee('Experience deleted successfully!');
-        $this->assertDatabaseMissing(Experience::class,['id' => $experience->id]);
+        $this->assertDatabaseMissing(Experience::class, ['id' => $experience->id]);
     }
 
 }
