@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get("/dashboard", [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function() {
+    Route::post("/profile/{user}/update", [UserController::class, 'updateProfile'])->name('profile.update');
+});
 
 require __DIR__.'/auth.php';
